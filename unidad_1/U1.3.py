@@ -5,14 +5,15 @@
 def voltear_entero(numero):
     numero = str(numero)
     numero_volteado = numero[::-1]
-    numero_volteado = (int(numero_volteado))
+    numero_volteado_separado = ' '.join(numero_volteado)
 
-    return numero_volteado
+    return numero_volteado_separado
 
 
 def main():
     numero_pensado_usuario = int(input("Introduzca un número entero con varias cifras: "))
-    print("El numero pensado es %i.\nEl numero volteado es %i." % (
+
+    print("El numero pensado es %i.\nEl numero volteado es %s." % (
         numero_pensado_usuario, voltear_entero(numero=numero_pensado_usuario)))
 
 

@@ -3,10 +3,16 @@
 # posible un número pensado por el usuario desde 0 al número
 # leído.
 
-numero_pensado_usuario = int(input("Introduzca un número entero: "))
+import random
+
+# numero_pensado_usuario = int(input("Introduzca un número entero: "))
+# numero_pensado_usuario_list = [numero_pensado_usuario]
+
+numero_pensado_usuario = random.randint(1, 20)  # Esto lo hago en el caso en el que el numero introducido sea random
+numero_pensado_usuario_list = [numero_pensado_usuario]
 
 for enumeracion in range(numero_pensado_usuario + 1):
-    if enumeracion == numero_pensado_usuario:
+    if enumeracion in numero_pensado_usuario_list:
         print("He adivinado el numero que introdujiste en la iteraccion numero %i!" % enumeracion)
         break
     else:

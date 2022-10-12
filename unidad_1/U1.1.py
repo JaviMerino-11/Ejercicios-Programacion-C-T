@@ -5,7 +5,7 @@
 numero_entrada = int(input("Introduzca un número entero: "))
 numeros_pares = []
 
-for enumeracion in range(numero_entrada):
+for enumeracion in range(numero_entrada + 1):
     if enumeracion % 2 == 0:
         numeros_pares.append(enumeracion)
         suma_numeros_pares = sum(numeros_pares)

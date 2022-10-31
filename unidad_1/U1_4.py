@@ -1,6 +1,9 @@
 # Dadas dos cadenas de caracteres, c1 y c2, escribe código
 # para insertar c2 en medio de c1 ('hola', 'adiós' → 'hoadiósla')
 
+# He creado una funcion que recibe dos cadenas de caracteres como argumentos de entrada, como se exige que ambas cadenas
+# sean hola y adios y que justo adios este entre ho- y -la, he creado una variable para encontrar la silaba -la, de modo
+# que la cadena combinada sera ho hasta la posicion donde se encuentra la, + la cadena 2 entera seguida por la.
 def combinar_cadenas_mitad(cadena_1: str, cadena_2: str):
     index = cadena_1.find('la')
     cadena_1_combinada = cadena_1[:index] + cadena_2 + cadena_1[index:]

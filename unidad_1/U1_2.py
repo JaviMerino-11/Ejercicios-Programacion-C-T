@@ -5,7 +5,10 @@
 
 import random
 
-
+#Para ello, he creado un metodo que recibe como argumento un numero (he creado la opcion de que sea aleatorio o que
+# sea introducido por el usuario, sólo hay que descomentar una y comentar la otra). Meto ese valor en una lista para que
+# sea mas facil de iterar; la recorro y voy comprobando si el valor de iteraccion coincide con el numero, en el momento
+# en el que si coincida salgo del bucle y muestro por pantalla a que intento lo he encontrado.
 def adivinar_numero(numero_pensado_usuario: int):
     numero_pensado_usuario_list = [numero_pensado_usuario]
     for enumeracion in range(numero_pensado_usuario + 1):

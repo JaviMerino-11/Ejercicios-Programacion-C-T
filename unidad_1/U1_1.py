@@ -9,10 +9,12 @@
 def sumar_numeros_pares(numero_entrada: int):
     numeros_pares = []
     suma_numeros_pares = []
+
     for enumeracion in range(1, numero_entrada + 1):
         if enumeracion % 2 == 0:
             numeros_pares.append(enumeracion)
             suma_numeros_pares = sum(numeros_pares)
+
     print("La suma total de los numeros pares concentrados entre 1 y %i es: %i" % (
         numero_entrada, suma_numeros_pares))
 

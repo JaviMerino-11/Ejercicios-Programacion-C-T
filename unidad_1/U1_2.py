@@ -11,6 +11,7 @@ import random
 # en el que si coincida salgo del bucle y muestro por pantalla a que intento lo he encontrado.
 def adivinar_numero(numero_pensado_usuario: int):
     numero_pensado_usuario_list = [numero_pensado_usuario]
+
     for enumeracion in range(numero_pensado_usuario + 1):
         if enumeracion in numero_pensado_usuario_list:
             print("He adivinado el numero que introdujiste en la iteraccion numero %i!" % enumeracion)

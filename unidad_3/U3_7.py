@@ -14,8 +14,8 @@ def mostrar_informacion(pais_residencia: str, comunidad_autonoma: str, *args, **
 
 
 def main():
-    nombre_ciudadano = input("Introduzca su nombre: ")
-    edad_ciudadano = (input("Introduzca su edad: "))
+    nombre_ciudadano = input("Introduzca su nombre (opcional): ")
+    edad_ciudadano = (input("Introduzca su edad (opcional): "))
     pais_residencia = input("Introduzca su pais de residencia: ")
     comunidad_autonoma = input("Introduzca la comunidad autonoma donde vive: ")
 

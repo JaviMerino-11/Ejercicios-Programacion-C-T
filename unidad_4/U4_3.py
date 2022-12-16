@@ -1,62 +1,73 @@
-# Escribe varias clases para representar canciones, artistas,álbumes y listas de reproducción, estableciendo
+# Escribe varias clases para representar canciones, artistas, álbumes y listas de reproducción, estableciendo
 # relaciones entre ellas. Se pueden asumir la siguientes restricciones: cada canción o álbum tiene un solo cantante,
 # puede haber álbumes de compilación con varios artistas. Escribe un programa para ejemplificar el uso de todas las
 # clases.
 
-class Rectangulo:
-    def __init__(self, alto: int, ancho: int):
-        self.__alto = alto
-        self.__ancho = ancho
+class Artista:
+    def __init__(self, nombre_artista: str, genero_musical: str):
+        self.nombre_artista = nombre_artista
+        self.genero_musical = genero_musical
 
-    def __str__(self):
-        return "Alto: %i\nAncho: %i" % (self.__alto, self.__ancho)
+    def mostrar_datos_artista(self):
+        print("Nombre del artista: %s\nGenero musical: %s" % (self.nombre_artista, self.genero_musical))
 
-    def calcular_perimetro(self):
-        perimetro = 2 * self.__alto + 2 * self.__ancho
 
-        return perimetro
+class Cancion(Artista):
+    def __init__(self, nombre_cancion: str, fecha_lanzamiento: int, nombre_artista: str, genero_musical: str):
+        super().__init__(nombre_artista, genero_musical)
+        self.nombre_cancion = nombre_cancion
+        self.fecha_lanzamiento = fecha_lanzamiento
 
-    def calcular_area(self):
-        area = self.__ancho * self.__alto
+    def mostrar_informacion_cancion(self):
+        print(self.mostrar_datos_artista(), "Nombre cancion: %s\nFecha de lanzamiento: %i" % (
+            self.nombre_cancion, self.fecha_lanzamiento))
 
-        return area
 
-    @property
-    def altura(self):
-        return self.__alto
+class Album(Cancion):
+    def __init__(self, fecha_publicacion_album: int, puntuacion: float, nombre_cancion: str, fecha_lanzamiento: int,
+                 nombre_artista: str, genero_musical: str):
+        super().__init__(nombre_cancion, fecha_lanzamiento, nombre_artista, genero_musical)
+        self.fecha_publicacion_album = fecha_publicacion_album
+        self.puntuacion = puntuacion
 
-    @altura.setter
-    def altura(self, alto_nuevo: int):
-        self.__alto = alto_nuevo
+    def mostrar_informacion_album(self):
+        print(self.mostrar_informacion_cancion(), "Fecha publicacion album: %s\nPuntuacion obtenida sobre 5: %i" % (
+            self.fecha_publicacion_album, self.puntuacion))
 
-    @property
-    def anchura(self):
-        return self.__ancho
 
-    @anchura.setter
-    def anchura(self, ancho_nuevo: int):
-        self.__ancho = ancho_nuevo
+class ListaReproduccion(Album):
+    def __init__(self, nombre_lista_reproduccion: str, fecha_publicacion_album: int, puntuacion: float,
+                 nombre_cancion: str, fecha_lanzamiento: int, nombre_artista: str, genero_musical: str):
+        super().__init__(fecha_publicacion_album, puntuacion, nombre_cancion, fecha_lanzamiento, nombre_artista,
+                         genero_musical)
+        self.nombre_lista_reproduccion = nombre_lista_reproduccion
+
+    def mostrar_informacion_lista_reproduccion(self):
+        print(self.mostrar_informacion_album(), "Nombre de la lista: %s" % self.nombre_lista_reproduccion)
 
 
 def main():
-    alto = int(input("Introduzca el alto del rectangulo (valor entero): "))
-    ancho = int(input("Introduzca el ancho del rectangulo (valor entero): "))
+    nombre_artista = input("Introduzca el nombre del artista: ")
+    genero_musical = input("Introduzca el genero musical del artista: ")
+    nombre_cancion = input("Introduzca el nombre de la cancion del artista: ")
+    fecha_lanzamiento_cancion = int(input("Introduzca la fecha de lanzamiento de la cancion: "))
+    fecha_publicacion_album = int(input("Introduzca la fecha de publicacion del album: "))
+    puntuacion_album = float(input("Introduzca la puntuacion sobre 5 del album: "))
+    nombre_lista_reproduccion = input("Introduzca el nombre de la lista de reproduccion: ")
 
-    rectangulo_1 = Rectangulo(alto=alto, ancho=ancho)
+    lista_reproduccion_1 = ListaReproduccion(nombre_lista_reproduccion=nombre_lista_reproduccion,
+                                             fecha_publicacion_album=fecha_publicacion_album,
+                                             puntuacion=puntuacion_album, nombre_cancion=nombre_cancion,
+                                             fecha_lanzamiento=fecha_lanzamiento_cancion, nombre_artista=nombre_artista,
+                                             genero_musical=genero_musical)
 
-    perimetro_rectangulo_1 = rectangulo_1.calcular_perimetro()
-    area_rectangulo_1 = rectangulo_1.calcular_area()
+    album_1 = Album(fecha_publicacion_album=fecha_publicacion_album, puntuacion=puntuacion_album,
+                    nombre_cancion=nombre_cancion, fecha_lanzamiento=fecha_lanzamiento_cancion,
+                    nombre_artista=nombre_artista, genero_musical=genero_musical)
 
-    print("Los datos del rectangulo son: \n" + rectangulo_1.__str__())
+    album_1.mostrar_informacion_album()
 
-    print(
-        "El perimetro del rectangulo es %f\nEl area del rectangulo es %f" % (perimetro_rectangulo_1, area_rectangulo_1))
-
-    # Le cambio el valor de los atributos que habia usado para instanciar la clase, por otros nuevos diferentes.
-    rectangulo_1.altura = 4
-    rectangulo_1.anchura = 7
-
-    print("Se han modificado la altura y la anchura a %i y %i" % (rectangulo_1.altura, rectangulo_1.anchura))
+    lista_reproduccion_1.mostrar_informacion_lista_reproduccion()
 
 
 if __name__ == '__main__':

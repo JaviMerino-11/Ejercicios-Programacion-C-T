@@ -6,7 +6,10 @@ from threading import Thread
 import numpy as np
 
 # Declaro una variable global para que todos los hilos accedan a la misma estructura de datos.
-VECTOR_NUMEROS_ALEATORIOS = np.random.randint(1, 50000, 10000)
+VECTOR_NUMEROS_ALEATORIOS_1 = [numero for numero in range(25000)]
+VECTOR_NUMEROS_ALEATORIOS_2 = [numero for numero in range(50000)]
+VECTOR_NUMEROS_ALEATORIOS_3 = [numero for numero in range(75000)]
+VECTOR_NUMEROS_ALEATORIOS_4 = [numero for numero in range(100000)]
 
 
 # Creo una clase que me permita customizar lo que quiero que haga el propio hilo, de forma que, a la hora de
@@ -16,10 +19,16 @@ VECTOR_NUMEROS_ALEATORIOS = np.random.randint(1, 50000, 10000)
 class CustomThread(Thread):
     def __init__(self):
         Thread.__init__(self)
-        self.value = None
+        self.value_1 = None
+        self.value_2 = None
+        self.value_3 = None
+        self.value_4 = None
 
     def run(self):
-        self.value = np.max(VECTOR_NUMEROS_ALEATORIOS)
+        self.value_1 = np.max(VECTOR_NUMEROS_ALEATORIOS_1)
+        self.value_2 = np.max(VECTOR_NUMEROS_ALEATORIOS_2)
+        self.value_3 = np.max(VECTOR_NUMEROS_ALEATORIOS_3)
+        self.value_4 = np.max(VECTOR_NUMEROS_ALEATORIOS_4)
 
 
 def main():
@@ -42,20 +51,19 @@ def main():
     hilo_4.join()
 
     # Accedemos a cada valor devuelto y lo almacenamos en variables asociadas a cada hilo
-    maximo_hilo_1 = hilo_1.value
-    maximo_hilo_2 = hilo_2.value
-    maximo_hilo_3 = hilo_3.value
-    maximo_hilo_4 = hilo_4.value
+    maximo_hilo_1 = hilo_1.value_1
+    maximo_hilo_2 = hilo_2.value_2
+    maximo_hilo_3 = hilo_3.value_3
+    maximo_hilo_4 = hilo_4.value_4
 
-    # Creo un set con los maximos obtenidos, de forma que si la longitud de esta estructura es 1, significa que todos
-    # los maximos son iguales y, por lo tanto, todos los hilos han llegado a la misma conclusion.
-    set_maximos_obtenidos = {maximo_hilo_1, maximo_hilo_2, maximo_hilo_3, maximo_hilo_4}
-    if len(set_maximos_obtenidos) == 1:
-        print(
-            "Los hilos han encontrado el mismo maximo en su ejecucion paralela: " + set_maximos_obtenidos.__str__())
-    else:
-        print(
-            "Los hilos no han encontrado el mismo maximo en su ejecucion paralela: " + set_maximos_obtenidos.__str__())
+    # Ahora creo una lista con todos los maximos obtenidos y la pinto:
+    lista_maximos_obtenidos = [maximo_hilo_1, maximo_hilo_2, maximo_hilo_3, maximo_hilo_4]
+    print("La lista de maximos obtenidos de cada ejecución paralela es: " + lista_maximos_obtenidos.__str__())
+
+    # Una vez he mostrado los maximos que he obtenido, voy a quedarme con el maximo de ellos y lo voy a mostrar por
+    # pantalla
+    maximo_absoluto = max(lista_maximos_obtenidos)
+    print("El maximo de todos los valores es: %i" % maximo_absoluto)
 
 
 if __name__ == '__main__':
